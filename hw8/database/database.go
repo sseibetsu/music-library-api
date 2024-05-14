@@ -19,7 +19,6 @@ type DbInstance struct {
 
 var DB DbInstance
 
-// ConnectDb инициализирует соединение с базой данных
 func ConnectDb() {
 	executablePath, err := os.Executable()
 	if err != nil {
@@ -27,7 +26,6 @@ func ConnectDb() {
 		return
 	}
 
-	// Получение абсолютного пути к каталогу с исполняемым файлом
 	currentDir := filepath.Dir(executablePath)
 
 	fmt.Println("Текущий рабочий каталог в database.go:", currentDir)
@@ -50,7 +48,6 @@ func ConnectDb() {
 
 	log.Println("Connected to the database")
 
-	// Автомиграция создаст таблицы на основе моделей
 	db.AutoMigrate(&models.Fact{})
 
 	DB = DbInstance{
@@ -58,7 +55,6 @@ func ConnectDb() {
 	}
 }
 
-// Close закрывает соединение с базой данных
 func Close() {
 	db, err := DB.Db.DB()
 	if err != nil {

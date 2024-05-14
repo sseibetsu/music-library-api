@@ -1,3 +1,3 @@
 # music-library-api
 
-demo-version oof this project.
+demo-version of this project.

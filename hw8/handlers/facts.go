@@ -17,7 +17,6 @@ func ListFacts(c *fiber.Ctx) error {
 		return err
 	}
 
-	// Получение абсолютного пути к каталогу с исполняемым файлом
 	currentDir := filepath.Dir(executablePath)
 
 	fmt.Println("Текущий рабочий каталог в facts.go:", currentDir)
@@ -28,7 +27,6 @@ func ListFacts(c *fiber.Ctx) error {
 	return c.Status(200).JSON(facts)
 }
 
-// ListTracks возвращает список всех треков
 func ListTracks(c *fiber.Ctx) error {
 	tracks := []models.Track{}
 	database.DB.Db.Find(&tracks)
@@ -36,7 +34,6 @@ func ListTracks(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(tracks)
 }
 
-// GetTrack возвращает информацию о конкретном треке
 func GetTrack(c *fiber.Ctx) error {
 	track := models.Track{}
 	if err := database.DB.Db.First(&track, c.Params("id")).Error; err != nil {
@@ -48,7 +45,6 @@ func GetTrack(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(track)
 }
 
-// CreateTrack создает новый трек
 func CreateTrack(c *fiber.Ctx) error {
 	track := new(models.Track)
 	if err := c.BodyParser(track); err != nil {
@@ -62,7 +58,6 @@ func CreateTrack(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(track)
 }
 
-// UpdateTrack обновляет информацию о треке
 func UpdateTrack(c *fiber.Ctx) error {
 	track := models.Track{}
 	if err := database.DB.Db.First(&track, c.Params("id")).Error; err != nil {
@@ -82,7 +77,6 @@ func UpdateTrack(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusOK).JSON(track)
 }
 
-// DeleteTrack удаляет трек
 func DeleteTrack(c *fiber.Ctx) error {
 	track := models.Track{}
 	if err := database.DB.Db.First(&track, c.Params("id")).Error; err != nil {

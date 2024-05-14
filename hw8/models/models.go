@@ -12,7 +12,6 @@ type Track struct {
 	Artist      string `json:"artist" gorm:"type:varchar(255);not null"`
 	Album       string `json:"album" gorm:"type:varchar(255);not null"`
 	ReleaseYear int    `json:"release_year" gorm:"not null"`
-	// Другие поля, соответствующие вашим требованиям...
 }
 
 type Playlist struct {
@@ -21,5 +20,4 @@ type Playlist struct {
 	Description string    `json:"description" gorm:"text"`
 	Tracks      []Track   `json:"tracks" gorm:"many2many:playlist_tracks;"`
 	CreatedAt   time.Time `json:"created_at"`
-	// Другие поля, соответствующие вашим требованиям...
 }
